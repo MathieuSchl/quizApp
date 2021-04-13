@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="titre_appli">Bienvenue dans un quiz pour une vie </string>
+    <string name="info_character">Select your character</string>
+    <string name="starting_button">Start</string>
+    <string name="answer_true">True</string>
+    <string name="answer_false">False</string>
+    <string name="content_question">null</string>
+    <string name="question_number">Question :</string>
+</resources>
