@@ -63,7 +63,11 @@ public class GameData {
     }
 
     public Question getActualQuestion(){
-        return this.questionList[this.actualQuestion];
+        try {
+            return this.questionList[this.actualQuestion];
+        }catch (Exception e){
+            return new Question("Error", "Error", "Error", "Error", "Error", new String[]{ "Error" });
+        }
     }
 
     public Integer getActualIndexQuestion(){
