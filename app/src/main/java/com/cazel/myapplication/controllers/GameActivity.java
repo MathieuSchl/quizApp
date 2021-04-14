@@ -7,12 +7,14 @@ import android.util.Log;
 
 import com.cazel.myapplication.R;
 import com.cazel.myapplication.models.GameData;
+import com.cazel.myapplication.models.Question;
 
 import org.json.JSONObject;
 
 import java.io.IOException;
 
 public class GameActivity extends AppCompatActivity implements QuestionsLoaderAsyncInterface{
+private GameData game = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,15 @@ public class GameActivity extends AppCompatActivity implements QuestionsLoaderAs
 
     @Override
     public void onFinish(JSONObject json) {
-        new GameData(json);
+
+        Bundle extra = getIntent().getExtras();
+        String nickName = extra.getString("nickName");
+        this.game = new GameData(json,nickName);
+
+        start_game(this.game.getActualQuestion());
+
+    }
+    public void start_game(Question question){
 
     }
 }
