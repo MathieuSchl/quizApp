@@ -63,14 +63,19 @@ private static final String  BUTTON_FALSE= "False";
     @Override
     public void onClick(View V) {
         if(V.getTag().equals("True")){
-            this.game.answerToActualQuestion(V.getTag().toString());
-            start_game(this.game.getActualQuestion());
-
+            sendAnswer(V.getTag().toString());
         }
         if(V.getTag().equals("False")){
-            this.game.answerToActualQuestion(V.getTag().toString());
-            start_game(this.game.getActualQuestion());
+            sendAnswer(V.getTag().toString());
         }
+    }
 
+    public void sendAnswer(String answer){
+        this.game.answerToActualQuestion(answer);
+        if (this.game.getActualIndexQuestion() < this.game.getNbQuestions()){
+            start_game(this.game.getActualQuestion());
+        }else {
+            // Start score Activity
+        }
     }
 }
