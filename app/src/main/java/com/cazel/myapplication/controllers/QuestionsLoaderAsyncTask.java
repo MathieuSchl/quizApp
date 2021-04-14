@@ -15,6 +15,14 @@ import java.net.URL;
 
 public class QuestionsLoaderAsyncTask extends AsyncTask <String, Void,JSONObject> {
 
+
+    public QuestionsLoaderAsyncTask(QuestionsLoaderAsyncInterface aListener) {
+        this.aListener = aListener;
+    }
+
+    private QuestionsLoaderAsyncInterface aListener;
+
+
     @Override
     protected JSONObject doInBackground(String... strings) {
         OkHttpClient client = new OkHttpClient();
@@ -41,5 +49,11 @@ public class QuestionsLoaderAsyncTask extends AsyncTask <String, Void,JSONObject
         Log.d("log", String.valueOf(json));
 
         return json;
+    }
+
+    @Override
+    protected void onPostExecute(JSONObject jsonObject) {
+        super.onPostExecute(jsonObject);
+        this.aListener.onFinish(jsonObject);
     }
 }

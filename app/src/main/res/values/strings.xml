@@ -7,4 +7,5 @@
     <string name="answer_false">False</string>
     <string name="content_question">null</string>
     <string name="question_number">Question :</string>
+    <string name="pseudo">Pseudo</string>
 </resources>
