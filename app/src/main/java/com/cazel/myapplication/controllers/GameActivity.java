@@ -50,6 +50,7 @@ private static final String  BUTTON_FALSE= "False";
         Button buttonFalse = findViewById(R.id.answerFalse);
         buttonFalse.setTag(BUTTON_FALSE);
         buttonFalse.setOnClickListener(this);
+
     }
 
 
@@ -63,10 +64,13 @@ private static final String  BUTTON_FALSE= "False";
     @Override
     public void onClick(View V) {
         if(V.getTag().equals("True")){
-            this.actualQuestion.userSetAnswer(V.getTag().toString());
+            this.game.answerToActualQuestion(V.getTag().toString());
+            start_game(this.game.getActualQuestion());
+
         }
         if(V.getTag().equals("False")){
-            this.actualQuestion.userSetAnswer(V.getTag().toString());
+            this.game.answerToActualQuestion(V.getTag().toString());
+            start_game(this.game.getActualQuestion());
         }
 
     }
