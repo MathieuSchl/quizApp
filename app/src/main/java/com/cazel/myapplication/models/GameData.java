@@ -13,7 +13,7 @@ public class GameData {
     private String type;
     private Integer nbQuestion;
     private Integer actualQuestion;
-    private Question[] questionList;
+    private Question[] questionList = new Question[0];
 
     public GameData(JSONObject json, String nickName){
         this.nickName = nickName;
@@ -47,11 +47,10 @@ public class GameData {
 
                 Question newQuestion = new Question(category, type, difficulty, question, correct_answer, incorrect_answers);
 
-                for (int indexQuestion = 0; indexQuestion < this.questionList.length; indexQuestion++) {
-                    Question[] temp = new Question[this.questionList.length + 1];
-                    System.arraycopy(this.questionList, 0, temp, 0, this.questionList.length);
-                    temp[this.questionList.length] = newQuestion;
-                }
+                Question[] temp = new Question[this.questionList.length + 1];
+                System.arraycopy(this.questionList, 0, temp, 0, this.questionList.length);
+                temp[this.questionList.length] = newQuestion;
+
             }
         } catch (JSONException e) {
             e.printStackTrace();
