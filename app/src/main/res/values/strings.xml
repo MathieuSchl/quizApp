@@ -5,7 +5,7 @@
     <string name="starting_button">Start</string>
     <string name="answer_true">True</string>
     <string name="answer_false">False</string>
-    <string name="content_question">null</string>
+    <string name="content_question"></string>
     <string name="question_number">Question :</string>
     <string name="pseudo">Pseudo</string>
 </resources>

@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(V.getTag().equals(BUTTON_IMAGE_CHANGE)){
 
-
         }
 
 
