@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".controllers.GameActivity"></activity>
+        <activity android:name=".controllers.GameActivity"
+            android:screenOrientation="portrait">
+        </activity>
         <activity android:name=".controllers.GameSelectorActivity" />
         <activity android:name=".controllers.MainActivity">
             <intent-filter>

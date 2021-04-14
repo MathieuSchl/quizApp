@@ -37,7 +37,6 @@ private static final String  BUTTON_FALSE= "False";
         String nickName = extra.getString("nickName");
 
         this.game = new GameData(json,nickName);
-        Log.d("test",this.game.getActualQuestion().getQuestion());
         start_game(this.game.getActualQuestion());
 
     }
