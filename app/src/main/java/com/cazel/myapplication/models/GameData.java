@@ -1,5 +1,7 @@
 package com.cazel.myapplication.models;
 
+import android.text.Html;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.cazel.myapplication.controllers.GameActivity;
@@ -28,14 +30,13 @@ public class GameData {
     }
 
     private void generateQuestions(JSONObject json){
-
         try {
             for (int index = 0; index < json.getJSONArray("results").length(); index++) {
                 JSONObject element = json.getJSONArray("results").getJSONObject(index);
                 String category = element.getString("category");
                 String type = element.getString("type");
                 String difficulty = element.getString("difficulty");
-                String question = element.getString("question");
+                String question = Html.fromHtml(element.getString("question")).toString();
                 String correct_answer = element.getString("correct_answer");
                 String[] incorrect_answers = new String[0];//element.getJSONArray("incorrect_answers");
                 for (int indexIncorrect_answers = 0; indexIncorrect_answers < element.getJSONArray("incorrect_answers").length(); indexIncorrect_answers++) {
