@@ -59,8 +59,10 @@ public class GameData {
     }
 
     public void answerToActualQuestion(String answer){
-        this.questionList[this.actualQuestion].userSetAnswer(answer);
-        this.actualQuestion++;
+        if(this.actualQuestion<this.nbQuestion){
+            this.questionList[this.actualQuestion].userSetAnswer(answer);
+            this.actualQuestion++;
+        }
     }
 
     public Question getActualQuestion(){
