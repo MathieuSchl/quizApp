@@ -66,4 +66,12 @@ public class GameData {
     public Question getActualQuestion(){
         return this.questionList[this.actualQuestion];
     }
+
+    public Integer getActualIndexQuestion(){
+        return this.actualQuestion+1;
+    }
+
+    public Integer getNbQuestions(){
+        return this.nbQuestion;
+    }
 }
