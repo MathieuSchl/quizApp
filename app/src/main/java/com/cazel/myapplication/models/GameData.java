@@ -50,7 +50,7 @@ public class GameData {
                 Question[] temp = new Question[this.questionList.length + 1];
                 System.arraycopy(this.questionList, 0, temp, 0, this.questionList.length);
                 temp[this.questionList.length] = newQuestion;
-
+                this.questionList = temp;
             }
         } catch (JSONException e) {
             e.printStackTrace();
