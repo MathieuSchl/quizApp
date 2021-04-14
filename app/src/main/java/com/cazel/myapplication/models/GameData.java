@@ -8,13 +8,15 @@ import com.cazel.myapplication.controllers.QuestionsLoaderAsyncTask;
 import java.util.Map;
 
 public class GameData {
+    private String nickName;
     private String category;
     private String type;
     private Integer nbQuestion;
     private Integer actualQuestion;
     private Question[] questionList;
 
-    public GameData(JSONObject json){
+    public GameData(JSONObject json, String nickName){
+        this.nickName = nickName;
         try {
             this.nbQuestion = json.getJSONArray("results").length();
         } catch (JSONException e) {
@@ -59,5 +61,9 @@ public class GameData {
     public void answerToActualQuestion(String answer){
         this.questionList[this.actualQuestion].userSetAnswer(answer);
         this.actualQuestion++;
+    }
+
+    public Question getActualQuestion(){
+        return this.questionList[this.actualQuestion];
     }
 }
