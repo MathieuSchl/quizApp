@@ -6,26 +6,98 @@
     android:layout_height="match_parent"
     tools:context=".controllers.GameSelectorActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
+    <Spinner
+        android:id="@+id/spinnerNumbQuestion"
+        android:layout_width="140dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginLeft="128dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCategory" />
+
+    <Spinner
+        android:id="@+id/spinnerType"
+        android:layout_width="140dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerDifficulty"
+        android:layout_marginLeft="130dp" />
+
+    <Spinner
+        android:id="@+id/spinnerDifficulty"
+        android:layout_width="140dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginLeft="136dp"
+        android:layout_marginTop="104dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textDifficulty"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="250dp"
+        android:layout_marginRight="296dp"
+        android:text="@string/textDifficulty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="250dp"
+        android:layout_marginRight="300dp"
+        android:text="@string/textTypeSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDifficulty" />
+
+    <Spinner
+        android:id="@+id/spinnerCategory"
+        android:layout_width="140dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginLeft="128dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerType" />
+
+    <TextView
+        android:id="@+id/textCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="250dp"
+        android:layout_marginRight="300dp"
+        android:text="@string/textCategory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textType" />
+
+    <TextView
+        android:id="@+id/textNumbQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="250dp"
+        android:layout_marginRight="288dp"
+        android:text="@string/text_numb_question"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textCategory" />
+
+    <Button
+        android:id="@+id/play_custom_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/playCustomGame"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="206dp"/>
-
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Switch"
-        tools:layout_editor_absoluteX="153dp"
-        tools:layout_editor_absoluteY="140dp" />
-
-    <Switch
-        android:id="@+id/switch2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Switch"
-        tools:layout_editor_absoluteX="150dp"
-        tools:layout_editor_absoluteY="205dp" />
+        app:layout_constraintVertical_bias="0.721" />
 </androidx.constraintlayout.widget.ConstraintLayout>

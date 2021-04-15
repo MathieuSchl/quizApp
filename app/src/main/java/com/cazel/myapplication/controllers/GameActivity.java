@@ -3,7 +3,6 @@ package com.cazel.myapplication.controllers;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,9 +12,6 @@ import com.cazel.myapplication.models.GameData;
 import com.cazel.myapplication.models.Question;
 
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.io.IOException;
 
 public class GameActivity extends AppCompatActivity implements QuestionsLoaderAsyncInterface, View.OnClickListener {
 private GameData game;
@@ -35,7 +31,6 @@ private static final String  BUTTON_FALSE= "False";
 
         Bundle extra = getIntent().getExtras();
         String nickName = extra.getString("nickName");
-
         this.game = new GameData(json,nickName);
         start_game(this.game.getActualQuestion());
 
@@ -52,11 +47,18 @@ private static final String  BUTTON_FALSE= "False";
 
     }
 
+    @Override
+    public void onBackPressed() {
+    }
 
     public void show_new_question(Question question){
         TextView question_container=findViewById(R.id.questionContent);
-        TextView question_title=findViewById(R.id.questionTitle);
-        question_title.setText(question.getCategory());
+        TextView question_number=findViewById(R.id.questionNumber);
+        TextView question_type=findViewById(R.id.questionType);
+        TextView question_difficulty=findViewById(R.id.questionDifficulty);
+        question_number.setText("Question: "+this.game.getActualIndexQuestion());
+        question_type.setText(question.getCategory());
+        question_difficulty.setText(question.getDifficulty());
         question_container.setText(question.getQuestion());
     }
 

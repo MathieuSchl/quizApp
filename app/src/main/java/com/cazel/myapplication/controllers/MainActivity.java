@@ -15,6 +15,7 @@ import com.cazel.myapplication.R;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String  BUTTON_START= "start";
     private static final String  BUTTON_IMAGE_CHANGE= "image_change";
+    private static final String  BUTTON_OPTION= "option";
     private static String[] imageList = new String[]{"gonk.png","droidDeca.png","droidB1.png"};
 
     @Override
@@ -29,6 +30,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ImageButton changeImage = findViewById(R.id.change_image);
         changeImage.setTag(BUTTON_IMAGE_CHANGE);
         changeImage.setOnClickListener(this);
+
+        Button buttonOption = findViewById(R.id.options);
+        buttonOption.setTag(BUTTON_OPTION);
+        buttonOption.setOnClickListener(this);
         }
 
     @Override
@@ -42,6 +47,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(V.getTag().equals(BUTTON_IMAGE_CHANGE)){
 
+        }
+        if(V.getTag().equals(BUTTON_OPTION)){
+            Intent intent = new Intent (MainActivity.this, GameSelectorActivity.class);
+            startActivity(intent);
         }
 
 

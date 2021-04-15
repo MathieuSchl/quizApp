@@ -1,11 +1,17 @@
 <resources>
     <string name="app_name">My Application</string>
-    <string name="titre_appli">Bienvenue dans un quiz pour une vie </string>
+    <string name="title_appli">Bienvenue dans un quiz pour une vie </string>
     <string name="info_character">Select your character</string>
-    <string name="starting_button">Start</string>
+    <string name="starting_button">Quick Game</string>
     <string name="answer_true">True</string>
     <string name="answer_false">False</string>
     <string name="content_question"></string>
     <string name="question_number">Question :</string>
     <string name="pseudo">Pseudo</string>
+    <string name="parameters">Custom Game</string>
+    <string name="textDifficulty">Difficulty Game</string>
+    <string name="textTypeSpinner">Type Game</string>
+    <string name="textCategory">Category Game</string>
+    <string name="playCustomGame">Play</string>
+    <string name="text_numb_question">Number Question</string>
 </resources>
