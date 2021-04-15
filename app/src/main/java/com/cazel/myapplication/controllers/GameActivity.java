@@ -2,7 +2,9 @@ package com.cazel.myapplication.controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -24,15 +26,47 @@ private static final String  BUTTON_FALSE= "False";
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        String URL = "https://opentdb.com/api.php?";
+        SharedPreferences prefs = getSharedPreferences("com.cazel.myapplication.prefs", MODE_PRIVATE);
+        String difficulty = prefs.getString("difficulty", "");
+        String type = prefs.getString("type", "");
+        String category = prefs.getString("category", "");
+        String nbQuestion = prefs.getString("nbQuestion", "10");
+
+        switch(type) {
+            case "True/False":
+                type = "boolean";
+                break;
+            case "Multiple_Choice":
+                type = "multiple";
+                break;
+            default:
+                type = "";
+        }
+
+        if (!(difficulty.equals("")||difficulty.equals("All"))) URL = URL + "difficulty="+difficulty+"&";
+        if (!(type.equals("")||type.equals("All"))) URL = URL + "type="+type+"&";
+        if (!(category.equals("")||category.equals("All"))) URL = URL + "category="+category+"&";
+        if (!nbQuestion.equals("All")) URL = URL + "amount="+nbQuestion;
+        else URL = URL + "amount=10";
+
+        /*
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("key", "v");
+        editor.apply();
+         */
+
+        Log.d("URL", URL);
         QuestionsLoaderAsyncTask questionsLoaderAsyncTask = new QuestionsLoaderAsyncTask(this);
-        questionsLoaderAsyncTask.execute("https://opentdb.com/api.php?amount=6&type=boolean");
+        questionsLoaderAsyncTask.execute(URL);
     }
 
     @Override
     public void onFinish(JSONObject json) {
 
-        Bundle extra = getIntent().getExtras();
-        String nickName = extra.getString("nickName");
+        SharedPreferences prefs = getSharedPreferences("com.cazel.myapplication.prefs", MODE_PRIVATE);
+        String nickName = prefs.getString("nickName", "NULL");
         this.game = new GameData(json,nickName);
         start_game(this.game.getActualQuestion());
 

@@ -60,4 +60,9 @@ public class Question {
         }
         return this.isCorrectAnswer;
     }
+
+    public String[] getAnswers(){
+        String[] res = new String[]{"Wait","Wait"};
+        return res;
+    }
 }
