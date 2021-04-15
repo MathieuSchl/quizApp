@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cazel.myapplication.R;
@@ -16,6 +17,7 @@ import org.json.JSONObject;
 public class GameActivity extends AppCompatActivity implements QuestionsLoaderAsyncInterface, View.OnClickListener {
 private GameData game;
 private Question actualQuestion;
+private LinearLayout answerButtonZone;
 private static final String  BUTTON_TRUE= "True";
 private static final String  BUTTON_FALSE= "False";
     @Override
@@ -36,14 +38,10 @@ private static final String  BUTTON_FALSE= "False";
 
     }
     public void start_game(Question question){
+
         this.actualQuestion=question;
         show_new_question(question);
-        Button buttonTrue = findViewById(R.id.answerTrue);
-        buttonTrue.setTag(BUTTON_TRUE);
-        buttonTrue.setOnClickListener(this);
-        Button buttonFalse = findViewById(R.id.answerFalse);
-        buttonFalse.setTag(BUTTON_FALSE);
-        buttonFalse.setOnClickListener(this);
+        updateLinearLayout();
 
     }
 
@@ -56,11 +54,40 @@ private static final String  BUTTON_FALSE= "False";
         TextView question_number=findViewById(R.id.questionNumber);
         TextView question_type=findViewById(R.id.questionType);
         TextView question_difficulty=findViewById(R.id.questionDifficulty);
-        question_number.setText("Question: "+this.game.getActualIndexQuestion());
+        question_number.setText("Question: "+this.game.getActualIndexQuestion()+" / "+this.game.getNbQuestions());
         question_type.setText(question.getCategory());
         question_difficulty.setText(question.getDifficulty());
         question_container.setText(question.getQuestion());
     }
+
+    public void updateLinearLayout(){
+        this.answerButtonZone = (LinearLayout) findViewById(R.id.linearLayoutAnswerButton);
+        this.answerButtonZone.removeAllViews();
+        if(this.actualQuestion.getType().equals("boolean")){
+            createButton("True");
+            createButton("False");
+        }
+        else if (this.actualQuestion.getType().equals("multiple")){
+            createButtons(4);
+        }
+
+    }
+
+    public void createButton(String text){
+        Button button = new Button(this);
+        button.setText(text);
+        button.setOnClickListener(this);
+        button.setTag(text);
+        this.answerButtonZone.addView(button, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT));
+    }
+    public void createButtons(int n){
+        for(int i=0;i<n;i++){
+            String[] answers=this.actualQuestion.getAnswers();
+            createButton(answers[i]);
+        }
+    }
+
 
     @Override
     public void onClick(View V) {
@@ -74,6 +101,7 @@ private static final String  BUTTON_FALSE= "False";
 
     public void sendAnswer(String answer){
         this.game.answerToActualQuestion(answer);
+
         if (this.game.getActualIndexQuestion() < this.game.getNbQuestions()){
             start_game(this.game.getActualQuestion());
         }else {

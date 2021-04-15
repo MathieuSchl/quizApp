@@ -3,9 +3,8 @@
     package="com.cazel.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,9 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".controllers.GameActivity"
-            android:screenOrientation="portrait">
-        </activity>
+        <activity android:name=".controllers.ResultActivity"></activity>
+        <activity
+            android:name=".controllers.GameActivity"
+            android:screenOrientation="portrait"></activity>
         <activity android:name=".controllers.GameSelectorActivity" />
         <activity android:name=".controllers.MainActivity">
             <intent-filter>
