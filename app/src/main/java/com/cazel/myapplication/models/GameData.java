@@ -39,12 +39,12 @@ public class GameData {
                 String type = element.getString("type");
                 String difficulty = element.getString("difficulty");
                 String question = Html.fromHtml(element.getString("question")).toString();
-                String correct_answer = element.getString("correct_answer");
+                String correct_answer = Html.fromHtml(element.getString("correct_answer")).toString();
                 String[] incorrect_answers = new String[0];//element.getJSONArray("incorrect_answers");
                 for (int indexIncorrect_answers = 0; indexIncorrect_answers < element.getJSONArray("incorrect_answers").length(); indexIncorrect_answers++) {
                     String[] temp = new String[incorrect_answers.length + 1];
                     System.arraycopy(incorrect_answers, 0, temp, 0, incorrect_answers.length);
-                    temp[incorrect_answers.length] = element.getJSONArray("incorrect_answers").getString(indexIncorrect_answers);
+                    temp[incorrect_answers.length] = Html.fromHtml(element.getJSONArray("incorrect_answers").getString(indexIncorrect_answers)).toString();
                     incorrect_answers = temp;
                 }
 
