@@ -91,4 +91,11 @@ public class GameData {
     public String getNickName(){
         return this.nickName;
     }
+    public Integer getScore(){
+        int score = 0;
+        for (Question question : questionList) {
+            if (question.getIsCorrectAnswer()) score = score + 1;
+        }
+        return score;
+    }
 }
