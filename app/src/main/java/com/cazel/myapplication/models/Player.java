@@ -14,7 +14,7 @@ public class Player {
     private Player(){
         Random rand = new Random();
         int x=rand.nextInt(listImageAvatar.length);
-        username="";
+        username="new Player";
         currentAvatarId=x;
         instance=this;
     }
