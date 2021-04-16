@@ -24,8 +24,8 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         Player player = Player.getInstance();
         TextView nickName = findViewById(R.id.nickNameResult);
         nickName.setText(data.getNickName());
-        ImageView avatar = findViewById(R.id.resultAvatarZone);
 
+        ImageView avatar = findViewById(R.id.resultAvatarZone);
         avatar.setImageResource(player.getPlayerAvatar());
         Button buttonHome = findViewById(R.id.result_page_home_button);
         buttonHome.setTag("Home");

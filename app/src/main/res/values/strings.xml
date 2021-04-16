@@ -16,7 +16,7 @@
     <string name="text_numb_question">Number Question</string>
     <string name="type_question" />
     <string name="difficulty_question" />
-    <string name="nickName">Cody</string>
+    <string name="nickName"></string>
     <string name="scoreTitle">Score :</string>
     <string name="noteResultValue">6/10</string>
     <string name="resultPageHomeButton">Home</string>

@@ -18,6 +18,9 @@ import com.cazel.myapplication.models.Question;
 
 import org.json.JSONObject;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class GameActivity extends AppCompatActivity implements QuestionsLoaderAsyncInterface, View.OnClickListener {
 private GameData game;
 private Question actualQuestion;
@@ -143,6 +146,11 @@ private static final String  BUTTON_FALSE= "False";
             sendAnswer(V.getTag().toString());
         }
         if(V.getTag().equals("False")){
+            sendAnswer(V.getTag().toString());
+        }
+        String[] listAnswers=this.game.getActualQuestion().getAnswers();
+        List<String> Answers=Arrays.asList(listAnswers);
+        if(Answers.contains(V.getTag())){
             sendAnswer(V.getTag().toString());
         }
     }
