@@ -26,7 +26,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         Player player = Player.getInstance();
 
         TextView nickName = findViewById(R.id.nickNameResult);
-        nickName.setText(data.getNickName());
+        nickName.setText(player.getUsername());
 
         TextView noteResult = findViewById(R.id.noteResult);
         noteResult.setText(data.getScore()+"/"+data.getNbQuestions());
