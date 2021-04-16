@@ -1,5 +1,6 @@
 package com.cazel.myapplication.controllers;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -72,7 +73,13 @@ public class GameSelectorActivity extends AppCompatActivity implements View.OnCl
             editor.apply();
 
             Intent intent = new Intent (GameSelectorActivity.this, GameActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent,0);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        finish();
     }
 }

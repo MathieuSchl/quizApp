@@ -29,6 +29,9 @@ public class Player {
     public String getUsername() {
         return username;
     }
+    public void setUsername(String newUsername){
+        username=newUsername;
+    }
     public int getPlayerAvatar(){
         return listImageAvatar[currentAvatarId];
     }

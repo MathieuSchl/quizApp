@@ -1,5 +1,6 @@
 package com.cazel.myapplication.controllers;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -172,10 +173,10 @@ private static final String  BUTTON_FALSE= "False";
                     start_game(game.getActualQuestion());
                 }else {
                     Intent intent = new Intent (GameActivity.this, ResultActivity.class);
-                    startActivity(intent);
+                    startActivityForResult(intent,0);
                 }
             }
-        }, 3000);
+        }, 2100);
 
     }
 
@@ -192,5 +193,11 @@ private static final String  BUTTON_FALSE= "False";
             correctButton.setBackgroundColor(Color.GREEN);
         }
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        finish();
     }
 }

@@ -49,7 +49,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
 
         if(v.getTag().equals("Home")){
             Intent intent = new Intent (ResultActivity.this, MainActivity.class);
-            startActivity(intent);
+            finish();
         }
     }
 }

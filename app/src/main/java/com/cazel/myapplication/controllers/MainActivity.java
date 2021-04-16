@@ -51,7 +51,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View V) {
-
+        TextView username = findViewById(R.id.nickName);
+        Player currentPlayer = Player.getInstance();
+        currentPlayer.setUsername(username.getText().toString());
         if(V.getTag().equals(BUTTON_START)){
             SharedPreferences prefs = getSharedPreferences("com.cazel.myapplication.prefs", MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
@@ -71,14 +73,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             editor.putInt("idAvatar",idAvatar);
 
             Intent intent = new Intent (MainActivity.this, GameActivity.class);
-            EditText nickName = findViewById(R.id.nickName);
-            intent.putExtra("nickName",nickName.getText());
-            editor.putString("nickName", nickName.getText().toString());
             editor.apply();
-            startActivity(intent);
-        }
-        if(V.getTag().equals(BUTTON_IMAGE_CHANGE)){
-            changeAvatar();
+            startActivityForResult(intent,0);
 
         }
         if(V.getTag().equals(BUTTON_OPTION)){
@@ -90,7 +86,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             editor.apply();
 
             Intent intent = new Intent (MainActivity.this, GameSelectorActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent,1);
+        }
+        if(V.getTag().equals(BUTTON_IMAGE_CHANGE)){
+            changeAvatar();
         }
     }
 
