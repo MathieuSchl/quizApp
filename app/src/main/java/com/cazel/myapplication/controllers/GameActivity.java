@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -125,14 +128,11 @@ private static final String  BUTTON_FALSE= "False";
     }
 
     public void createButton(String text){
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
 
         Button button = new Button(this);
         button.setText(text);
         button.setOnClickListener(this);
         button.setTag(text);
-        button.setLayoutParams(params);
         this.answerButtonZone.addView(button, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
     }
@@ -147,26 +147,50 @@ private static final String  BUTTON_FALSE= "False";
     @Override
     public void onClick(View V) {
         if(V.getTag().equals("True")){
-            sendAnswer(V.getTag().toString());
+            sendAnswer(V.getTag().toString(),V);
         }
         if(V.getTag().equals("False")){
-            sendAnswer(V.getTag().toString());
+            sendAnswer(V.getTag().toString(),V);
         }
-        String[] listAnswers=this.game.getActualQuestion().getAnswers();
+        String[] listAnswers=this.actualQuestion.getAnswers();
         List<String> Answers=Arrays.asList(listAnswers);
         if(Answers.contains(V.getTag())){
-            sendAnswer(V.getTag().toString());
+            sendAnswer(V.getTag().toString(),V);
         }
     }
 
-    public void sendAnswer(String answer){
+    public void sendAnswer(String answer,View V){
+        showAnswer(V);
         this.game.answerToActualQuestion(answer);
+        // function for delay the next question appear and let show the correct answer to user
+        final Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                GameData game = GameData.getInstance();
+                if (game.getActualIndexQuestion() <= game.getNbQuestions()){
+                    start_game(game.getActualQuestion());
+                }else {
+                    Intent intent = new Intent (GameActivity.this, ResultActivity.class);
+                    startActivity(intent);
+                }
+            }
+        }, 3000);
 
-        if (this.game.getActualIndexQuestion() <= this.game.getNbQuestions()){
-            start_game(this.game.getActualQuestion());
-        }else {
-            Intent intent = new Intent (GameActivity.this, ResultActivity.class);
-            startActivity(intent);
+    }
+
+    public void showAnswer(View V){
+        Button button = (Button) V;
+        Log.d("Tag",button.getTag().toString());
+        Log.d("Answer",game.getActualQuestion().getCorrect_answer());
+        if(button.getTag().toString().equals(this.actualQuestion.getCorrect_answer())){
+            button.setBackgroundColor(Color.GREEN);
         }
+        else{
+            button.setBackgroundColor(Color.RED);
+            Button correctButton=answerButtonZone.findViewWithTag(this.actualQuestion.getCorrect_answer());
+            correctButton.setBackgroundColor(Color.GREEN);
+        }
+
     }
 }
