@@ -54,7 +54,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayoutAnswerButton"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:orientation="vertical"

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.cazel.myapplication.R;
 import com.cazel.myapplication.models.Player;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Player currentPlayer=Player.getInstance();
 
+        TextView playerText=findViewById(R.id.nickName);
+        playerText.setText(currentPlayer.getUsername());
         ImageView avatar=findViewById(R.id.avatarImage);
         avatar.setImageResource(currentPlayer.getPlayerAvatar());
 

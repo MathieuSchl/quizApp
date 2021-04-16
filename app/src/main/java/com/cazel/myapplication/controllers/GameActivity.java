@@ -125,10 +125,14 @@ private static final String  BUTTON_FALSE= "False";
     }
 
     public void createButton(String text){
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+
         Button button = new Button(this);
         button.setText(text);
         button.setOnClickListener(this);
         button.setTag(text);
+        button.setLayoutParams(params);
         this.answerButtonZone.addView(button, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
     }
