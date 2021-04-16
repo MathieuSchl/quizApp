@@ -1,5 +1,9 @@
 package com.cazel.myapplication.models;
 
+import java.lang.reflect.Array;
+import java.util.List;
+import java.util.Random;
+
 public class Question {
     private String category;
     private String type;
@@ -65,6 +69,15 @@ public class Question {
         String[] allAnswers = new String[incorrect_answers.length + 1];
         System.arraycopy(incorrect_answers, 0, allAnswers, 0, incorrect_answers.length);
         allAnswers[incorrect_answers.length] = correct_answer;
+
+        Random rand = new Random();
+
+        for (int i = 0; i < allAnswers.length; i++) {
+            int randomIndexToSwap = rand.nextInt(allAnswers.length);
+            String temp = allAnswers[randomIndexToSwap];
+            allAnswers[randomIndexToSwap] = allAnswers[i];
+            allAnswers[i] = temp;
+        }
         return allAnswers;
     }
 }
