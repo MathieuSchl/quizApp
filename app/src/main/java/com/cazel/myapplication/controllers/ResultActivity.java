@@ -2,6 +2,7 @@ package com.cazel.myapplication.controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.cazel.myapplication.models.Player;
 
 public class ResultActivity extends AppCompatActivity implements View.OnClickListener {
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,11 +24,16 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
 
         GameData data = GameData.getInstance();
         Player player = Player.getInstance();
+
         TextView nickName = findViewById(R.id.nickNameResult);
         nickName.setText(data.getNickName());
 
+        TextView noteResult = findViewById(R.id.noteResult);
+        noteResult.setText(data.getScore()+"/"+data.getNbQuestions());
+
         ImageView avatar = findViewById(R.id.resultAvatarZone);
         avatar.setImageResource(player.getPlayerAvatar());
+
         Button buttonHome = findViewById(R.id.result_page_home_button);
         buttonHome.setTag("Home");
         buttonHome.setOnClickListener(this);
