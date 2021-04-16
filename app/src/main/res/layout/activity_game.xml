@@ -19,8 +19,8 @@
 
     <TextView
         android:id="@+id/questionNumber"
-        android:layout_width="97dp"
-        android:layout_height="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/question_number"
         app:layout_constraintBottom_toTopOf="@+id/questionContent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,8 +30,8 @@
 
     <TextView
         android:id="@+id/questionType"
-        android:layout_width="75dp"
-        android:layout_height="34dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/type_question"
         app:layout_constraintBottom_toTopOf="@+id/questionContent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,8 +42,8 @@
 
     <TextView
         android:id="@+id/questionDifficulty"
-        android:layout_width="77dp"
-        android:layout_height="31dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/difficulty_question"
         app:layout_constraintBottom_toTopOf="@+id/questionContent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayoutAnswerButton"
-        android:layout_width="0dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:orientation="vertical"

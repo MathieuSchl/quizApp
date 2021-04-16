@@ -17,8 +17,12 @@
         <activity
             android:name=".controllers.GameActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name=".controllers.GameSelectorActivity" />
-        <activity android:name=".controllers.MainActivity">
+        <activity
+            android:name=".controllers.GameSelectorActivity"
+            android:screenOrientation="portrait"></activity>/>
+        <activity
+            android:name=".controllers.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
