@@ -47,6 +47,20 @@ private static final String  BUTTON_FALSE= "False";
                 type = "";
         }
 
+        switch(category) {
+            case "Video Games":
+                category = "15";
+                break;
+            case "History":
+                category = "23";
+                break;
+            case "Anime & Manga":
+                category = "31";
+                break;
+            default:
+                category = "";
+        }
+
         if (!(difficulty.equals("")||difficulty.equals("All"))) URL = URL + "difficulty="+difficulty+"&";
         if (!(type.equals("")||type.equals("All"))) URL = URL + "type="+type+"&";
         if (!(category.equals("")||category.equals("All"))) URL = URL + "category="+category+"&";
