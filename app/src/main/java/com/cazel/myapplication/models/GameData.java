@@ -7,22 +7,20 @@ import org.json.JSONObject;
 import com.cazel.myapplication.controllers.GameActivity;
 import com.cazel.myapplication.controllers.QuestionsLoaderAsyncTask;
 
+import java.io.IOException;
 import java.util.Map;
 
 public class GameData {
     private static GameData instance;
 
-    private String nickName;
-    private Integer id_avatar;
     private String category;
     private String type;
     private Integer nbQuestion;
     private Integer actualQuestion;
     private Question[] questionList = new Question[0];
 
-    public GameData(JSONObject json, String nickName, Integer id_avatar){
-        this.nickName = nickName;
-        this.id_avatar = id_avatar;
+    public GameData(JSONObject json){
+
         try {
             this.nbQuestion = json.getJSONArray("results").length();
         } catch (JSONException e) {
@@ -34,8 +32,22 @@ public class GameData {
         instance=this;
     }
 
-    public static GameData getInstance(){
+    public static GameData getInstance(JSONObject json){
+        if(instance == null){
+            new GameData(json);
+        }
         return instance;
+
+    }
+
+    public static GameData getInstance(){
+        try {
+            return instance;
+        }
+        catch(NullPointerException e) {
+            return null;
+        }
+
     }
     private void generateQuestions(JSONObject json){
         try {
@@ -88,9 +100,7 @@ public class GameData {
     public Integer getNbQuestions(){
         return this.nbQuestion;
     }
-    public String getNickName(){
-        return this.nickName;
-    }
+
     public Integer getScore(){
         int score = 0;
         for (Question question : questionList) {

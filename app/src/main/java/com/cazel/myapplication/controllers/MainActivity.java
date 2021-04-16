@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String  BUTTON_START= "start";
     private static final String  BUTTON_IMAGE_CHANGE= "image_change";
     private static final String  BUTTON_OPTION= "option";
-    private static int idAvatar=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +68,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             String nbQuestion = "10";
             editor.putString("nbQuestion", nbQuestion);
-
-            editor.putInt("idAvatar",idAvatar);
 
             Intent intent = new Intent (MainActivity.this, GameActivity.class);
             editor.apply();

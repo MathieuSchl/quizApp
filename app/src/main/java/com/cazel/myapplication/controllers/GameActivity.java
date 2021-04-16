@@ -88,10 +88,7 @@ private static final String  BUTTON_FALSE= "False";
     @Override
     public void onFinish(JSONObject json) {
 
-        SharedPreferences prefs = getSharedPreferences("com.cazel.myapplication.prefs", MODE_PRIVATE);
-        String nickName = prefs.getString("nickName", "NULL");
-        int idAvatar = prefs.getInt("idAvatar",0);
-        this.game = new GameData(json,nickName,idAvatar);
+        this.game =GameData.getInstance(json);
         start_game(this.game.getActualQuestion());
 
     }

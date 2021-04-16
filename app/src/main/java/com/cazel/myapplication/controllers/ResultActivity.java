@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cazel.myapplication.R;
@@ -37,6 +39,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         Button buttonHome = findViewById(R.id.result_page_home_button);
         buttonHome.setTag("Home");
         buttonHome.setOnClickListener(this);
+        fillScoreBoard();
     }
 
     @Override
@@ -51,5 +54,24 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
             Intent intent = new Intent (ResultActivity.this, MainActivity.class);
             finish();
         }
+    }
+
+    public void fillScoreBoard(){
+       // addLineScoreBoard();
+    }
+    public void addLineScoreBoard(){
+        LinearLayout parent = findViewById(R.id.linearLayoutScoreBoard);
+        LinearLayout layout1 = new LinearLayout(this);
+
+        layout1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        layout1.setOrientation(LinearLayout.HORIZONTAL);
+        parent.addView(layout1);
+        TextView position = new TextView(this);
+        position.setText("1");
+        ImageView avatarView = new ImageView(this);
+        Player player = Player.getInstance();
+        avatarView.setImageResource(player.getPlayerAvatar());
+        layout1.addView(position);
+        layout1.addView(avatarView);
     }
 }
