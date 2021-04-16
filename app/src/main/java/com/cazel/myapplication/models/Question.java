@@ -62,7 +62,9 @@ public class Question {
     }
 
     public String[] getAnswers(){
-        String[] res = new String[]{"Wait","Wait"};
-        return res;
+        String[] allAnswers = new String[incorrect_answers.length + 1];
+        System.arraycopy(incorrect_answers, 0, allAnswers, 0, incorrect_answers.length);
+        allAnswers[incorrect_answers.length] = correct_answer;
+        return allAnswers;
     }
 }
