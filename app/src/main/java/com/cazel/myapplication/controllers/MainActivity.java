@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.cazel.myapplication.R;
+import com.cazel.myapplication.models.Player;
 
 import java.util.Random;
 
@@ -22,19 +23,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String  BUTTON_IMAGE_CHANGE= "image_change";
     private static final String  BUTTON_OPTION= "option";
     private static int idAvatar=0;
-    private static final int[] listImageAvatar = { R.drawable.starwars1, R.drawable.starwars2,R.drawable.starwars3,R.drawable.starwars4,R.drawable.starwars5,R.drawable.starwars6,R.drawable.starwars7,
-            R.drawable.starwars8,R.drawable.starwars9,R.drawable.starwars10,R.drawable.starwars11,R.drawable.starwars12,R.drawable.starwars13,R.drawable.starwars14,R.drawable.starwars15};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Random rand = new Random();
-        int x=rand.nextInt(listImageAvatar.length);
+        Player currentPlayer=Player.getInstance();
+
         ImageView avatar=findViewById(R.id.avatarImage);
-        avatar.setImageResource(listImageAvatar[x]);
-        this.idAvatar=x;
+        avatar.setImageResource(currentPlayer.getPlayerAvatar());
+
         Button buttonStart = findViewById(R.id.button);
         buttonStart.setTag(BUTTON_START);
         buttonStart.setOnClickListener(this);
@@ -77,12 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
         if(V.getTag().equals(BUTTON_IMAGE_CHANGE)){
-
-            Random rand = new Random();
-            int x=rand.nextInt(listImageAvatar.length);
-            ImageView avatar=findViewById(R.id.avatarImage);
-            avatar.setImageResource(listImageAvatar[x]);
-            this.idAvatar=x;
+            changeAvatar();
 
         }
         if(V.getTag().equals(BUTTON_OPTION)){
@@ -96,7 +89,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent (MainActivity.this, GameSelectorActivity.class);
             startActivity(intent);
         }
+    }
 
-
+    public void changeAvatar(){
+        Random rand = new Random();
+        Player player=Player.getInstance();
+        int x=rand.nextInt(player.getListImageAvatar().length);
+        player.setNewPlayerAvatar(x);
+        ImageView avatar=findViewById(R.id.avatarImage);
+        avatar.setImageResource(player.getPlayerAvatar());
     }
 }

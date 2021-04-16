@@ -10,6 +10,8 @@ import com.cazel.myapplication.controllers.QuestionsLoaderAsyncTask;
 import java.util.Map;
 
 public class GameData {
+    private static GameData instance;
+
     private String nickName;
     private Integer id_avatar;
     private String category;
@@ -29,8 +31,12 @@ public class GameData {
         this.actualQuestion = 0;
 
         this.generateQuestions(json);
+        instance=this;
     }
 
+    public static GameData getInstance(){
+        return instance;
+    }
     private void generateQuestions(JSONObject json){
         try {
             for (int index = 0; index < json.getJSONArray("results").length(); index++) {
@@ -81,5 +87,8 @@ public class GameData {
 
     public Integer getNbQuestions(){
         return this.nbQuestion;
+    }
+    public String getNickName(){
+        return this.nickName;
     }
 }
