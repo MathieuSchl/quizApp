@@ -64,7 +64,7 @@ private static final String  BUTTON_FALSE= "False";
                 category = "";
         }
 
-        if (!(difficulty.equals("")||difficulty.equals("All"))) URL = URL + "difficulty="+difficulty+"&";
+        if (!(difficulty.equals("")||difficulty.equals("All"))) URL = URL + "difficulty="+difficulty.toLowerCase()+"&";
         if (!(type.equals("")||type.equals("All"))) URL = URL + "type="+type+"&";
         if (!(category.equals("")||category.equals("All"))) URL = URL + "category="+category+"&";
         if (!nbQuestion.equals("All")) URL = URL + "amount="+nbQuestion;
