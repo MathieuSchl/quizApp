@@ -2,6 +2,8 @@ package com.cazel.myapplication.controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -67,7 +69,8 @@ private static final String  BUTTON_FALSE= "False";
 
         SharedPreferences prefs = getSharedPreferences("com.cazel.myapplication.prefs", MODE_PRIVATE);
         String nickName = prefs.getString("nickName", "NULL");
-        this.game = new GameData(json,nickName);
+        int idAvatar = prefs.getInt("idAvatar",0);
+        this.game = new GameData(json,nickName,idAvatar);
         start_game(this.game.getActualQuestion());
 
     }
@@ -79,10 +82,7 @@ private static final String  BUTTON_FALSE= "False";
 
     }
 
-    @Override
-    public void onBackPressed() {
-    }
-
+    @SuppressLint("SetTextI18n")
     public void show_new_question(Question question){
         TextView question_container=findViewById(R.id.questionContent);
         TextView question_number=findViewById(R.id.questionNumber);
@@ -102,7 +102,7 @@ private static final String  BUTTON_FALSE= "False";
             createButton("False");
         }
         else if (this.actualQuestion.getType().equals("multiple")){
-            createButtons(4);
+            createButtons();
         }
 
     }
@@ -115,10 +115,10 @@ private static final String  BUTTON_FALSE= "False";
         this.answerButtonZone.addView(button, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
     }
-    public void createButtons(int n){
-        for(int i=0;i<n;i++){
-            String[] answers=this.actualQuestion.getAnswers();
-            createButton(answers[i]);
+    public void createButtons(){
+        String[] answers=this.actualQuestion.getAnswers();
+        for (String answer : answers) {
+            createButton(answer);
         }
     }
 
@@ -136,10 +136,11 @@ private static final String  BUTTON_FALSE= "False";
     public void sendAnswer(String answer){
         this.game.answerToActualQuestion(answer);
 
-        if (this.game.getActualIndexQuestion() < this.game.getNbQuestions()){
+        if (this.game.getActualIndexQuestion() <= this.game.getNbQuestions()){
             start_game(this.game.getActualQuestion());
         }else {
-            // Start score Activity
+            Intent intent = new Intent (GameActivity.this, ResultActivity.class);
+            startActivity(intent);
         }
     }
 }

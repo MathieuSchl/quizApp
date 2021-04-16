@@ -30,14 +30,14 @@
         app:layout_constraintVertical_bias="0.512" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/avatarImage"
         android:layout_width="215dp"
         android:layout_height="143dp"
         android:layout_marginTop="92dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/gonk" />
+        tools:ignore="ContentDescription" />
 
     <EditText
         android:id="@+id/nickName"
@@ -55,8 +55,8 @@
         android:id="@+id/change_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/avatarImage"
+        app:layout_constraintEnd_toEndOf="@+id/avatarImage"
         app:srcCompat="@android:drawable/ic_menu_rotate" />
 
     <Button

@@ -11,14 +11,16 @@ import java.util.Map;
 
 public class GameData {
     private String nickName;
+    private Integer id_avatar;
     private String category;
     private String type;
     private Integer nbQuestion;
     private Integer actualQuestion;
     private Question[] questionList = new Question[0];
 
-    public GameData(JSONObject json, String nickName){
+    public GameData(JSONObject json, String nickName, Integer id_avatar){
         this.nickName = nickName;
+        this.id_avatar = id_avatar;
         try {
             this.nbQuestion = json.getJSONArray("results").length();
         } catch (JSONException e) {
