@@ -88,7 +88,7 @@ private static final String  BUTTON_FALSE= "False";
     @Override
     public void onFinish(JSONObject json) {
 
-        this.game =GameData.getInstance(json);
+        this.game = new GameData(json);
         start_game(this.game.getActualQuestion());
 
     }

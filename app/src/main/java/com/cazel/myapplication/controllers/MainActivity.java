@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Player currentPlayer=Player.getInstance();
 
         TextView playerText=findViewById(R.id.nickName);
-        playerText.setText(currentPlayer.getUsername());
+        playerText.setHint(currentPlayer.getUsername());
         ImageView avatar=findViewById(R.id.avatarImage);
         avatar.setImageResource(currentPlayer.getPlayerAvatar());
 
@@ -52,7 +52,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View V) {
         TextView username = findViewById(R.id.nickName);
         Player currentPlayer = Player.getInstance();
-        currentPlayer.setUsername(username.getText().toString());
+        if(username.getText().toString()!=""){
+            currentPlayer.setUsername(username.getText().toString());
+        }else{
+            currentPlayer.setUsername(username.getHint().toString());
+        }
+
         if(V.getTag().equals(BUTTON_START)){
             SharedPreferences prefs = getSharedPreferences("com.cazel.myapplication.prefs", MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
@@ -79,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             SharedPreferences.Editor editor = prefs.edit();
 
             EditText nickName = findViewById(R.id.nickName);
+            nickName.setHint(getResources().getString(R.string.pseudo));
             editor.putString("nickName", nickName.getText().toString());
             editor.apply();
 

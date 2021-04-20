@@ -32,21 +32,8 @@ public class GameData {
         instance=this;
     }
 
-    public static GameData getInstance(JSONObject json){
-        if(instance == null){
-            new GameData(json);
-        }
-        return instance;
-
-    }
-
     public static GameData getInstance(){
-        try {
-            return instance;
-        }
-        catch(NullPointerException e) {
-            return null;
-        }
+        return instance;
 
     }
     private void generateQuestions(JSONObject json){
