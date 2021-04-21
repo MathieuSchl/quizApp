@@ -158,23 +158,24 @@ private static final String  BUTTON_FALSE= "False";
     }
 
     public void sendAnswer(String answer,View V){
-        showAnswer(V);
-        this.game.answerToActualQuestion(answer);
-        // function for delay the next question appear and let show the correct answer to user
-        final Handler handler = new Handler(Looper.getMainLooper());
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                GameData game = GameData.getInstance();
-                if (game.getActualIndexQuestion() <= game.getNbQuestions()){
-                    start_game(game.getActualQuestion());
-                }else {
-                    Intent intent = new Intent (GameActivity.this, ResultActivity.class);
-                    startActivityForResult(intent,0);
+        if(this.game.ifUserCanAnswer(actualQuestion.getindexQuestion())){
+            showAnswer(V);
+            this.game.answerToActualQuestion(answer);
+            // function for delay the next question appear and let show the correct answer to user
+            final Handler handler = new Handler(Looper.getMainLooper());
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    GameData game = GameData.getInstance();
+                    if (game.getActualIndexQuestion() <= game.getNbQuestions()){
+                        start_game(game.getActualQuestion());
+                    }else {
+                        Intent intent = new Intent (GameActivity.this, ResultActivity.class);
+                        startActivityForResult(intent,0);
+                    }
                 }
-            }
-        }, 2100);
-
+            }, 2100);
+        }
     }
 
     public void showAnswer(View V){

@@ -53,7 +53,7 @@ public class GameData {
                     incorrect_answers = temp;
                 }
 
-                Question newQuestion = new Question(category, type, difficulty, question, correct_answer, incorrect_answers);
+                Question newQuestion = new Question(category, type, difficulty, question, correct_answer, incorrect_answers, index);
 
                 Question[] temp = new Question[this.questionList.length + 1];
                 System.arraycopy(this.questionList, 0, temp, 0, this.questionList.length);
@@ -72,11 +72,15 @@ public class GameData {
         }
     }
 
+    public boolean ifUserCanAnswer(int indexQuestion){
+        return this.actualQuestion.equals(indexQuestion);
+    }
+
     public Question getActualQuestion(){
         try {
             return this.questionList[this.actualQuestion];
         }catch (Exception e){
-            return new Question("Error", "Error", "Error", "Error", "Error", new String[]{ "Error" });
+            return new Question("Error", "Error", "Error", "Error", "Error", new String[]{ "Error" }, 0);
         }
     }
 
