@@ -1,9 +1,11 @@
 package com.cazel.myapplication.controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -51,13 +53,12 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
 
         if(v.getTag().equals("Home")){
-            Intent intent = new Intent (ResultActivity.this, MainActivity.class);
             finish();
         }
     }
 
     public void fillScoreBoard(){
-       // addLineScoreBoard();
+        addLineScoreBoard();
     }
     public void addLineScoreBoard(){
         LinearLayout parent = findViewById(R.id.linearLayoutScoreBoard);
@@ -71,7 +72,13 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         ImageView avatarView = new ImageView(this);
         Player player = Player.getInstance();
         avatarView.setImageResource(player.getPlayerAvatar());
+        avatarView.setMaxHeight(100);
+        avatarView.setMaxWidth(100);
+        avatarView.setScaleType(ImageView.ScaleType.FIT_START);
+        avatarView.setAdjustViewBounds(true);
         layout1.addView(position);
         layout1.addView(avatarView);
+
+
     }
 }

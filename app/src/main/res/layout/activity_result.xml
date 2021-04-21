@@ -69,25 +69,11 @@
         android:id="@+id/result_page_home_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
-        android:layout_marginLeft="65dp"
         android:layout_marginTop="40dp"
         android:text="@string/resultPageHomeButton"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutScoreBoard"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/result_page_replay_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="65dp"
-        android:layout_marginRight="65dp"
-        android:text="@string/resultPageReplayButton"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutScoreBoard"
         app:layout_constraintVertical_bias="0.0" />
 
