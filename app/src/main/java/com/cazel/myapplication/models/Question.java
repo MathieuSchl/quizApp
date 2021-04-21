@@ -1,19 +1,22 @@
 package com.cazel.myapplication.models;
 
+import android.util.Log;
+
 import java.lang.reflect.Array;
 import java.util.List;
 import java.util.Random;
 
 public class Question {
-    private String category;
-    private String type;
-    private String difficulty;
-    private String question;
-    private String correct_answer;
-    private String[] incorrect_answers;
+    private final String category;
+    private final String type;
+    private final String difficulty;
+    private final String question;
+    private final String correct_answer;
+    private final String[] incorrect_answers;
+    private final Boolean starWarsQuestion;
+    private final int indexQuestion;
     private String playerAnswer;
     private Boolean isCorrectAnswer;
-    private int indexQuestion;
 
     public Question(String category, String type, String difficulty, String question, String correct_answer, String[] incorrect_answers, int indexQuestion){
         this.category = category;
@@ -23,6 +26,7 @@ public class Question {
         this.correct_answer = correct_answer;
         this.incorrect_answers = incorrect_answers;
         this.indexQuestion = indexQuestion;
+        this.starWarsQuestion = testIfStarWarsQuestion(this.question);
     }
 
     public String getCategory(){
@@ -57,8 +61,23 @@ public class Question {
         return this.isCorrectAnswer;
     }
 
+    public Boolean getStarWarsQuestion(){
+        return this.starWarsQuestion;
+    }
+
     public int getindexQuestion(){
         return this.indexQuestion;
+    }
+
+    private boolean testIfStarWarsQuestion(String question){
+        String questionLowerCase = question.toLowerCase();
+        String[] starWarsWords = new String[]{"starwars","star wars","droid","jedi","anakin","r2d2","r2-d2","c3po","vador","palpatine"};
+        for (int i = 0; i < starWarsWords.length; i++) {
+            if(questionLowerCase.split(starWarsWords[i]).length!=1){
+                return true;
+            }
+        }
+        return false;
     }
 
     public Boolean userSetAnswer(String answer){

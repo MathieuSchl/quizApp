@@ -58,6 +58,9 @@ private static final String  BUTTON_FALSE= "False";
             case "Video Games":
                 category = "15";
                 break;
+            case "Films":
+                category = "11";
+                break;
             case "History":
                 category = "23";
                 break;

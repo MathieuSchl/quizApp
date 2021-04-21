@@ -32,7 +32,7 @@ public class GameSelectorActivity extends AppCompatActivity implements View.OnCl
         setNewSpinner(spinnerType,itemsType);
 
         Spinner spinnerCategory = findViewById(R.id.spinnerCategory);
-        String[] itemsCategory = new String[]{"All","Video Games","History","Anime & Manga",};
+        String[] itemsCategory = new String[]{"All","Video Games","Films","History","Anime & Manga"};
         setNewSpinner(spinnerCategory,itemsCategory);
 
         Spinner spinnerNumbQuestion = findViewById(R.id.spinnerNumbQuestion);
