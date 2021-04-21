@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String  BUTTON_START= "start";
     private static final String  BUTTON_IMAGE_CHANGE= "image_change";
     private static final String  BUTTON_OPTION= "option";
+    private static final Integer  GAME_ACTIVITY_REQUEST_CODE= 1;
+    private static final Integer  OPTION_ACTIVITY_REQUEST_CODE= 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             Intent intent = new Intent (MainActivity.this, GameActivity.class);
             editor.apply();
-            startActivityForResult(intent,0);
+            startActivityForResult(intent,GAME_ACTIVITY_REQUEST_CODE);
 
         }
         if(V.getTag().equals(BUTTON_OPTION)){
@@ -89,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             editor.apply();
 
             Intent intent = new Intent (MainActivity.this, GameSelectorActivity.class);
-            startActivityForResult(intent,1);
+            startActivityForResult(intent,OPTION_ACTIVITY_REQUEST_CODE);
         }
         if(V.getTag().equals(BUTTON_IMAGE_CHANGE)){
             changeAvatar();

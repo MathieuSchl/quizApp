@@ -35,8 +35,7 @@
         android:text="@string/type_question"
         app:layout_constraintBottom_toTopOf="@+id/questionContent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.741"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/questionNumber"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.897" />
 
@@ -46,8 +45,7 @@
         android:layout_height="wrap_content"
         android:text="@string/difficulty_question"
         app:layout_constraintBottom_toTopOf="@+id/questionContent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.251"
+        app:layout_constraintEnd_toStartOf="@+id/questionNumber"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.899" />
