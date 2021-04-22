@@ -42,8 +42,11 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         GameData data = GameData.getInstance();
         Player player = Player.getInstance();
         player.setScore(data.getScore());
-
-        newWinner = new Winner(player);
+        try {
+            newWinner = new Winner((Player)player.clone());
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
         TextView nickName = findViewById(R.id.nickNameResult);
         nickName.setText(newWinner.getUsername());
 
@@ -56,6 +59,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         Button buttonHome = findViewById(R.id.result_page_home_button);
         buttonHome.setTag("Home");
         buttonHome.setOnClickListener(this);
+        //testScoreBoard();
         try {
             updateScoreBoard();
         } catch (IOException e) {
@@ -75,6 +79,15 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
             finish();
         }
     }
+    public void testScoreBoard(){
+        ScoreBoard actualBoard = null;
+        if(ScoreBoard.getInstance() == null){
+             actualBoard = ScoreBoard.getInstance(newWinner);
+        }else{
+             actualBoard = ScoreBoard.getInstance();
+        }
+
+    }
     public void updateScoreBoard() throws IOException {
         String path = getFilesDir() + FILE_NAME;
         File file = new File(path);
@@ -85,6 +98,8 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         else{
             FileScoreBoard = GetFileScoreBoard();
             Log.d("LOOK!","getFileCorrectly");
+            Log.d("LOOK!",FileScoreBoard.getWinnersList()[0].getUsername());
+            FileScoreBoard.addWinner(newWinner);
             saveNewScoreBoard(FileScoreBoard);
             Log.d("LOOK!","saveFile");
             }
@@ -121,7 +136,6 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         fis.close();
         return scoreBoard;
     }
-
     public void saveNewScoreBoard(ScoreBoard scoreBoard) throws IOException {
         String path = getFilesDir() + FILE_NAME;
         FileOutputStream fos = new FileOutputStream(new File(path));

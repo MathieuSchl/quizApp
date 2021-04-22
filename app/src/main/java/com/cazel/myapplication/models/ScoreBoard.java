@@ -16,8 +16,11 @@ public class ScoreBoard implements Serializable {
 
     public static ScoreBoard getInstance( Winner winner){
         if(instance==null){
-            instance=new ScoreBoard(winner);
+            instance = new ScoreBoard(winner);
         }
+        return instance;
+    }
+    public static ScoreBoard getInstance(){
         return instance;
     }
 
