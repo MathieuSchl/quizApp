@@ -5,7 +5,7 @@ import com.cazel.myapplication.R;
 import java.io.Serializable;
 import java.util.Random;
 
-public class Player implements Serializable {
+public class Player implements Serializable, Cloneable {
     private static Player instance;
     private static String username;
     private static Integer currentAvatarId;
@@ -26,6 +26,10 @@ public class Player implements Serializable {
             instance=new Player();
         }
         return instance;
+    }
+
+    public Player createClone() throws CloneNotSupportedException{
+        return (Player) this.clone();
     }
     public String getUsername() {
         return username;
