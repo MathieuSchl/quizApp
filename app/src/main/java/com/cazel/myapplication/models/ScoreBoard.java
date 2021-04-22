@@ -2,21 +2,34 @@ package com.cazel.myapplication.models;
 
 import android.text.Html;
 
-public class ScoreBoard {
-    private Player[] playersList;
+import java.io.Serializable;
 
-    public ScoreBoard(){
-        playersList = new Player[0];
+public class ScoreBoard implements Serializable {
+    private static ScoreBoard instance;
+    private Winner[] winnersList;
+
+    public ScoreBoard(Winner winner){
+        winnersList = new Winner[1];
+        winnersList[0] = winner;
+        instance = this;
     }
 
-    public Player[] getPlayersList(){
-        return this.playersList;
+    public static ScoreBoard getInstance( Winner winner){
+        if(instance==null){
+            instance=new ScoreBoard(winner);
+        }
+        return instance;
     }
 
-    public void addPlayer(Player newPlayer){
-        Player[] temp = new Player[playersList.length + 1];
-        System.arraycopy(playersList, 0, temp, 0, playersList.length);
-        temp[playersList.length] = newPlayer;
-        playersList = temp;
+    public Winner[] getWinnersList(){
+        return this.winnersList;
     }
+
+    public void addWinner(Winner newWinner){
+        Winner[] temp = new Winner[winnersList.length + 1];
+        System.arraycopy(winnersList, 0, temp, 0, winnersList.length);
+        temp[winnersList.length] = newWinner;
+        winnersList = temp;
+    }
+    
 }

@@ -6,20 +6,22 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/gonk"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication">
-        <activity android:name=".controllers.ResultActivity"></activity>
+        android:theme="@style/Theme.MyApplication"
+        android:requestLegacyExternalStorage="true">
+        <activity android:name=".controllers.ResultActivity" />
         <activity
             android:name=".controllers.GameActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".controllers.GameSelectorActivity"
-            android:screenOrientation="portrait"></activity>/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".controllers.MainActivity"
             android:screenOrientation="portrait">

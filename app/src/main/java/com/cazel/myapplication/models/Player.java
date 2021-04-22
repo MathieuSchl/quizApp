@@ -2,9 +2,10 @@ package com.cazel.myapplication.models;
 
 import com.cazel.myapplication.R;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Player {
+public class Player implements Serializable {
     private static Player instance;
     private static String username;
     private static Integer currentAvatarId;
@@ -30,7 +31,7 @@ public class Player {
         return username;
     }
     public void setUsername(String newUsername){
-        username=newUsername;
+        username = newUsername;
     }
     public int getPlayerAvatar(){
         return listImageAvatar[currentAvatarId];
@@ -38,6 +39,11 @@ public class Player {
     public int[] getListImageAvatar(){
         return listImageAvatar;
     }
+
+    public  Integer getCurrentAvatarId() {
+        return currentAvatarId;
+    }
+
     public void setNewPlayerAvatar(Integer id){
         currentAvatarId=id;
     }

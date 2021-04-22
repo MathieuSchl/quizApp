@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +19,15 @@ import android.widget.TextView;
 
 import com.cazel.myapplication.R;
 import com.cazel.myapplication.models.Player;
+import com.cazel.myapplication.models.ScoreBoard;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -24,14 +35,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String  BUTTON_IMAGE_CHANGE= "image_change";
     private static final String  BUTTON_OPTION= "option";
     private static final Integer  GAME_ACTIVITY_REQUEST_CODE= 1;
-    private static final Integer  OPTION_ACTIVITY_REQUEST_CODE= 1;
+    private static final Integer  OPTION_ACTIVITY_REQUEST_CODE= 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Player currentPlayer=Player.getInstance();
+        Player currentPlayer = Player.getInstance();
 
         TextView playerText=findViewById(R.id.nickName);
         playerText.setHint(currentPlayer.getUsername());
@@ -107,4 +118,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ImageView avatar=findViewById(R.id.avatarImage);
         avatar.setImageResource(player.getPlayerAvatar());
     }
+
 }
