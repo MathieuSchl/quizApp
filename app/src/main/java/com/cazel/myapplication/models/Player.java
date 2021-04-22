@@ -28,8 +28,9 @@ public class Player implements Serializable, Cloneable {
         return instance;
     }
 
-    public Player createClone() throws CloneNotSupportedException{
-        return (Player) this.clone();
+    public Object clone() throws CloneNotSupportedException
+    {
+        return super.clone();
     }
     public String getUsername() {
         return username;
