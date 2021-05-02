@@ -13,7 +13,7 @@ public class Player implements Serializable, Cloneable {
     private static final int[] listImageAvatar = { R.drawable.starwars1, R.drawable.starwars2,R.drawable.starwars3,R.drawable.starwars4,R.drawable.starwars5,R.drawable.starwars6,R.drawable.starwars7,
             R.drawable.starwars8,R.drawable.starwars9,R.drawable.starwars10,R.drawable.starwars11,R.drawable.starwars12,R.drawable.starwars13,R.drawable.starwars14,R.drawable.starwars15};
 
-    private Player(){
+    public Player(){
         Random rand = new Random();
         int x=rand.nextInt(listImageAvatar.length);
         username="New Player";

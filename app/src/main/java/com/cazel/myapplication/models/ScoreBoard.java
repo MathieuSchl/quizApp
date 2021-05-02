@@ -10,8 +10,8 @@ public class ScoreBoard implements Serializable {
     private Winner[] winnersList;
 
     public ScoreBoard(Winner winner){
-        winnersList = new Winner[1];
-        winnersList[0] = winner;
+        this.winnersList = new Winner[1];
+        this.winnersList[0] = winner;
     }
 
     public Winner[] getWinnersList(){
@@ -21,9 +21,8 @@ public class ScoreBoard implements Serializable {
     public void addWinner(Winner newWinner){
         Winner[] temp = new Winner[getWinnersList().length + 1];
         System.arraycopy(getWinnersList(), 0, temp, 0, getWinnersList().length);
-        temp[winnersList.length] = newWinner;
-        winnersList = temp;
-        Log.d("WinnerLook",winnersList.toString()+"___"+winnersList.length);
+        temp[getWinnersList().length] = newWinner;
+        this.winnersList = temp;
+        Log.d("WinnerLook",winnersList[0].getScore()+"___"+winnersList.length);
     }
-
 }

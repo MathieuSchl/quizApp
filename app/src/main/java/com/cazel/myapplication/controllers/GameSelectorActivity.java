@@ -36,7 +36,7 @@ public class GameSelectorActivity extends AppCompatActivity implements View.OnCl
         setNewSpinner(spinnerCategory,itemsCategory);
 
         Spinner spinnerNumbQuestion = findViewById(R.id.spinnerNumbQuestion);
-        String[] itemsNumbQuestion = new String[]{"5","10","15","20"};
+        String[] itemsNumbQuestion = new String[]{"1","5","10","15","20"};
         setNewSpinner(spinnerNumbQuestion,itemsNumbQuestion);
 
         Button buttonOption = findViewById(R.id.play_custom_game);

@@ -102,6 +102,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         for (int i = 0; i < board.getWinnersList().length;i++) {
             Log.d("LOOOOOOOOK",board.getWinnersList()[i].getScore().toString());
         }
+        Log.d("LookLength",""+board.getWinnersList()[0].getScore());
 
 
         fillScoreBoard(board);

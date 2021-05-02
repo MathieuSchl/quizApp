@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final Integer  GAME_ACTIVITY_REQUEST_CODE= 1;
     private static final Integer  OPTION_ACTIVITY_REQUEST_CODE= 2;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
