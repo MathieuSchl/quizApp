@@ -83,7 +83,6 @@ private static final String  BUTTON_FALSE= "False";
         editor.apply();
          */
 
-        Log.d("URL", URL);
         QuestionsLoaderAsyncTask questionsLoaderAsyncTask = new QuestionsLoaderAsyncTask(this);
         questionsLoaderAsyncTask.execute(URL);
     }
@@ -183,8 +182,6 @@ private static final String  BUTTON_FALSE= "False";
 
     public void showAnswer(View V){
         Button button = (Button) V;
-        Log.d("Tag",button.getTag().toString());
-        Log.d("Answer",game.getActualQuestion().getCorrect_answer());
         if(button.getTag().toString().equals(this.actualQuestion.getCorrect_answer())){
             button.setBackgroundColor(Color.GREEN);
         }

@@ -1,8 +1,5 @@
 package com.cazel.myapplication.models;
 
-import android.text.Html;
-import android.util.Log;
-
 import java.io.Serializable;
 
 public class ScoreBoard implements Serializable {
@@ -23,6 +20,5 @@ public class ScoreBoard implements Serializable {
         System.arraycopy(getWinnersList(), 0, temp, 0, getWinnersList().length);
         temp[getWinnersList().length] = newWinner;
         this.winnersList = temp;
-        Log.d("WinnerLook",winnersList[0].getScore()+"___"+winnersList.length);
     }
 }

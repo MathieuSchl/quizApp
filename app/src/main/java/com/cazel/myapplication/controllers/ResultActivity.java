@@ -74,17 +74,13 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         String path = getFilesDir() + FILE_NAME;
         File file = new File(path);
         ScoreBoard FileScoreBoard = null;
-        Log.d("LOOK!",file.toString());
         if(!file.exists()) {
-            Log.d("LOOK!","createFile");
             FileScoreBoard = CreateFile(file);
         }
         else{
             FileScoreBoard = GetFileScoreBoard();
-            Log.d("LOOK!","getFileCorrectly");
             FileScoreBoard.addWinner(newWinner);
             saveNewScoreBoard(FileScoreBoard);
-            Log.d("LOOK!","saveFile");
             }
         fillScoreBoard(FileScoreBoard);
     }
@@ -100,10 +96,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
             board.addWinner(winner);
         }
         for (int i = 0; i < board.getWinnersList().length;i++) {
-            Log.d("LOOOOOOOOK",board.getWinnersList()[i].getScore().toString());
         }
-        Log.d("LookLength",""+board.getWinnersList()[0].getScore());
-
 
         fillScoreBoard(board);
     }
@@ -112,11 +105,9 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
                 R.drawable.starwars8,R.drawable.starwars9,R.drawable.starwars10,R.drawable.starwars11,R.drawable.starwars12,R.drawable.starwars13,R.drawable.starwars14,R.drawable.starwars15})
         );
 
-        Log.d("creatingNewScoreBoard","True");
         try {
             FileOutputStream fos = new FileOutputStream(file);
             ObjectOutputStream os = new ObjectOutputStream(fos);
-            Log.d("writing","gona write object into file");
             os.writeObject(scoreBoard);
             os.close();
             fos.close();
@@ -157,7 +148,6 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         LinearLayout parent = findViewById(R.id.linearLayoutScoreBoard);
         parent.removeAllViews();
         for (Winner winner : board.getWinnersList()) {
-            Log.d("LOOK",winner.getScore().toString());
             addLineScoreBoard(winner,index);
             index++;
         }

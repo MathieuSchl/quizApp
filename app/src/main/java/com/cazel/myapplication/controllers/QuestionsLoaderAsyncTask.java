@@ -46,8 +46,6 @@ public class QuestionsLoaderAsyncTask extends AsyncTask <String, Void,JSONObject
             e.printStackTrace();
         }
 
-        Log.d("log", String.valueOf(json));
-
         return json;
     }
 
