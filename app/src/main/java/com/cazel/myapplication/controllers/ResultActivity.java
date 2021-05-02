@@ -83,16 +83,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         }
         else{
             FileScoreBoard = GetFileScoreBoard();
-            Log.d("status","Avant");
-            for (int i = 0; i < FileScoreBoard.getWinnersList().length; i++) {
-                Log.d("test",FileScoreBoard.getWinnersList()[i].getUsername());
-            }
             FileScoreBoard.addWinner(newWinner);
-            Log.d("status","Après");
-            for (int i = 0; i < FileScoreBoard.getWinnersList().length; i++) {
-                Log.d("test",FileScoreBoard.getWinnersList()[i].getUsername());
-                Log.d("test",FileScoreBoard.getWinnersList()[i].getScore().toString());
-            }
             saveNewScoreBoard(FileScoreBoard);
             }
         fillScoreBoard(FileScoreBoard);

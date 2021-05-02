@@ -17,13 +17,15 @@ public class ScoreBoard implements Serializable {
         return this.winnersList;
     }
 
-    public void addWinner(Winner newWinner){
+    public boolean addWinner(Winner newWinner){
         int scoreNewWinner = newWinner.getScore();
         Winner[] temp = new Winner[0];
 
         boolean newWinnerIsPushed = false;
+        boolean isNewHighScore = false;
         for (int i = 0; i < this.winnersList.length; i++) {
             if(!newWinnerIsPushed && this.winnersList[i].getScore()<scoreNewWinner){
+                if (i==0) isNewHighScore = true;
                 temp = this.pushWinner(temp, newWinner);
                 newWinnerIsPushed = true;
             }
@@ -33,6 +35,15 @@ public class ScoreBoard implements Serializable {
             temp = this.pushWinner(temp, newWinner);
         }
         this.winnersList = temp;
+
+        //Max 5 players in scoreBoard
+        if (this.winnersList.length>5){
+            Winner[] newTemp = new Winner[this.winnersList.length - 1];
+            System.arraycopy(winnersList, 0, newTemp, 0, winnersList.length-1);
+            this.winnersList = newTemp;
+        }
+
+        return isNewHighScore;
     }
 
     private Winner[] pushWinner(Winner[] winnersList,Winner winnerToPush){
