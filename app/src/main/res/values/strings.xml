@@ -7,7 +7,7 @@
     <string name="answer_false">False</string>
     <string name="content_question" />
     <string name="question_number" />
-    <string name="pseudo"></string>
+    <string name="pseudo" />
     <string name="parameters">Custom Game</string>
     <string name="textDifficulty">Difficulty Game</string>
     <string name="textTypeSpinner">Type Game</string>
@@ -16,10 +16,12 @@
     <string name="text_numb_question">Number Question</string>
     <string name="type_question" />
     <string name="difficulty_question" />
-    <string name="nickName"></string>
+    <string name="nickName" />
     <string name="scoreTitle">Score :</string>
-    <string name="noteResultValue"></string>
+    <string name="noteResultValue" />
     <string name="resultPageHomeButton">Home</string>
     <string name="resultPageReplayButton">Replay</string>
     <string name="ScoreBoardTitle">ScoreBoard : </string>
+    <string name="titleQuestionDifficulty">Difficulty :</string>
+    <string name="titleQuestionCategory">Category :</string>
 </resources>

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -112,6 +113,7 @@ private static final String  BUTTON_FALSE= "False";
         question_type.setText(question.getCategory());
         question_difficulty.setText(question.getDifficulty());
         question_container.setText(question.getQuestion());
+        question_container.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
     }
 
     public void updateLinearLayout(){

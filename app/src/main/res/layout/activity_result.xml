@@ -13,7 +13,8 @@
         android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/nickNameResult"
@@ -30,6 +31,7 @@
         android:layout_width="89dp"
         android:layout_height="25dp"
         android:layout_marginBottom="16dp"
+        android:fontFamily="sans-serif"
         android:text="@string/scoreTitle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.729"></LinearLayout>
+        app:layout_constraintVertical_bias="0.729" />
 
     <Button
         android:id="@+id/result_page_home_button"

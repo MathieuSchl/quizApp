@@ -154,7 +154,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         username.setPadding(30, 0, 30, 0);
 
         TextView score = new TextView(this);
-        score.setText(winner.getScore().toString());
+        score.setText(winner.getScore().toString()+" Pts");
 
         ImageView avatarView = new ImageView(this);
         avatarView.setImageResource(winner.getWinnerAvatar());

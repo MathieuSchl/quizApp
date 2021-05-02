@@ -1,8 +1,10 @@
 
 package com.cazel.myapplication.controllers;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
@@ -39,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final Integer  GAME_ACTIVITY_REQUEST_CODE= 1;
     private static final Integer  OPTION_ACTIVITY_REQUEST_CODE= 2;
     private static final String FILE_NAME = "/scoreBoard.ser";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,19 +138,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             fillLineBestPlayer(winner);
         }
     }
+    @SuppressLint("SetTextI18n")
     public void fillLineBestPlayer(Winner winner){
 
         LinearLayout parent = findViewById(R.id.currentBestPlayerZone);
-
+        parent.removeAllViews();
         TextView username = new TextView(this);
         username.setText(winner.getUsername());
         username.setPadding(30, 0, 30, 0);
 
         TextView score = new TextView(this);
-        score.setText(winner.getScore().toString());
+        score.setText(winner.getScore().toString()+" Pts");
         TextView title = new TextView(this);
         title.setText("Current Best Player :");
-        title.setPadding(10,10,10,10);
+        title.setPadding(10,0,10,0);
 
         ImageView avatarView = new ImageView(this);
         avatarView.setImageResource(winner.getWinnerAvatar());
@@ -157,11 +159,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         avatarView.setMaxWidth(100);
         avatarView.setScaleType(ImageView.ScaleType.FIT_START);
         avatarView.setAdjustViewBounds(true);
-        avatarView.setPadding(20,0,0,0);
+        avatarView.setPadding(0,0,20,0);
 
         parent.addView(title);
-        parent.addView(avatarView);
         parent.addView(username);
+        parent.addView(avatarView);
         parent.addView(score);
     }
     public ScoreBoard GetFileScoreBoard() throws IOException {
@@ -181,4 +183,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return scoreBoard;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        showBestPlayer();
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

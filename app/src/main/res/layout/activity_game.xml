@@ -9,8 +9,9 @@
     <TextView
         android:id="@+id/questionContent"
         android:layout_width="276dp"
-        android:layout_height="132dp"
-        android:layout_marginTop="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="292dp"
+        android:fontFamily="sans-serif"
         android:text="@string/content_question"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -24,31 +25,34 @@
         android:text="@string/question_number"
         app:layout_constraintBottom_toTopOf="@+id/questionContent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.339" />
-
-    <TextView
-        android:id="@+id/questionType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/type_question"
-        app:layout_constraintBottom_toTopOf="@+id/questionContent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/questionNumber"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.897" />
+        app:layout_constraintVertical_bias="0.2" />
 
     <TextView
         android:id="@+id/questionDifficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="140dp"
+        android:fontFamily="@font/atomic_age"
         android:text="@string/difficulty_question"
-        app:layout_constraintBottom_toTopOf="@+id/questionContent"
-        app:layout_constraintEnd_toStartOf="@+id/questionNumber"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.899" />
+        app:layout_constraintStart_toEndOf="@+id/titleQuestionDifficulty"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/questionType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="44dp"
+        android:fontFamily="@font/atomic_age"
+        android:text="@string/type_question"
+        app:layout_constraintStart_toEndOf="@+id/titleQuestionCategory"
+        app:layout_constraintTop_toBottomOf="@+id/questionDifficulty" />
 
     <LinearLayout
         android:id="@+id/linearLayoutAnswerButton"
@@ -59,4 +63,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/questionContent"></LinearLayout>
+
+    <TextView
+        android:id="@+id/titleQuestionDifficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="140dp"
+        android:text="@string/titleQuestionDifficulty"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/titleQuestionCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="44dp"
+        android:text="@string/titleQuestionCategory"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleQuestionDifficulty" />
 </androidx.constraintlayout.widget.ConstraintLayout>
