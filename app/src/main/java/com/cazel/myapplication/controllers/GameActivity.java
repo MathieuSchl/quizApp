@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cazel.myapplication.R;
 import com.cazel.myapplication.models.GameData;
@@ -114,6 +115,9 @@ private static final String  BUTTON_FALSE= "False";
         question_difficulty.setText(question.getDifficulty());
         question_container.setText(question.getQuestion());
         question_container.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+        if(this.game.getActualQuestion().getStarWarsQuestion()){
+            Toast.makeText(getApplicationContext(),"Impressive, Most Impressive. You found a Star Wars question !!!!",Toast.LENGTH_LONG).show();
+        }
     }
 
     public void updateLinearLayout(){
