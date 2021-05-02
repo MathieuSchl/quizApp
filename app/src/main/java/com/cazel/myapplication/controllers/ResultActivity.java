@@ -86,7 +86,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
             FileScoreBoard = GetFileScoreBoard();
             boolean PlayerFirst = FileScoreBoard.addWinner(newWinner);
             if(PlayerFirst){
-                Toast.makeText(getApplicationContext(),"Good job !! "+newWinner.getUsername()+" Won the first place with "+newWinner.getScore()+" Pts",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Good job !! "+newWinner.getUsername()+" Won the first place with "+newWinner.getScore()+" Pts",Toast.LENGTH_LONG).show();
             }
             saveNewScoreBoard(FileScoreBoard);
             }
@@ -94,7 +94,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
     }
     public ScoreBoard CreateFile(File file) {
         ScoreBoard scoreBoard = new ScoreBoard(this.newWinner);
-        Toast.makeText(getApplicationContext(),"Good job !! "+newWinner.getUsername()+" Won the first place with "+newWinner.getScore()+" Pts",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"Good job !! "+newWinner.getUsername()+" Won the first place with "+newWinner.getScore()+" Pts",Toast.LENGTH_LONG).show();
         try {
             FileOutputStream fos = new FileOutputStream(file);
             ObjectOutputStream os = new ObjectOutputStream(fos);
