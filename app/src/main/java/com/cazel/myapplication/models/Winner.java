@@ -10,11 +10,11 @@ public class Winner implements Serializable {
     private static Integer score;
     private transient static int[] listImageAvatar;
 
-    public Winner(Player player){
-        Winner.username = player.getUsername();
-        Winner.avatarId = player.getCurrentAvatarId();
-        Winner.score = player.getScore();
-        Winner.listImageAvatar = player.getListImageAvatar();
+    public Winner(String username,Integer avatarId,Integer score,int[] listImageAvatar){
+        Winner.username = username;
+        Winner.avatarId = avatarId;
+        Winner.score = score;
+        Winner.listImageAvatar = listImageAvatar;
     }
 
     public String getUsername() {

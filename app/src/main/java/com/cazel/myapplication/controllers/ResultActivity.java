@@ -45,6 +45,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         TextView nickName = findViewById(R.id.nickNameResult);
         nickName.setText(player.getUsername());
 
+        this.newWinner = new Winner(player.getUsername(),player.getCurrentAvatarId(),player.getScore(),player.getListImageAvatar());
         TextView noteResult = findViewById(R.id.noteResult);
         noteResult.setText(data.getScore()+"/"+data.getNbQuestions());
 
@@ -54,7 +55,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         Button buttonHome = findViewById(R.id.result_page_home_button);
         buttonHome.setTag("Home");
         buttonHome.setOnClickListener(this);
-        testScoreBoard();
+        testWinners();
     }
 
     @Override
@@ -69,37 +70,47 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
             finish();
         }
     }
-    public void testScoreBoard(){
-        ScoreBoard updatedBoard = null;
-
-        if(ScoreBoard.getInstance() == null){
-             updatedBoard = ScoreBoard.getInstance(newWinner);
-        }else{
-            ScoreBoard actualBoard = ScoreBoard.getInstance();
-            actualBoard.addWinner(newWinner);
-            updatedBoard = actualBoard;
-        }
-        fillScoreBoard(updatedBoard);
-    }
     public void updateScoreBoard() throws IOException {
         String path = getFilesDir() + FILE_NAME;
         File file = new File(path);
         ScoreBoard FileScoreBoard = null;
+        Log.d("LOOK!",file.toString());
         if(!file.exists()) {
+            Log.d("LOOK!","createFile");
             FileScoreBoard = CreateFile(file);
         }
         else{
             FileScoreBoard = GetFileScoreBoard();
             Log.d("LOOK!","getFileCorrectly");
-            Log.d("LOOK!",FileScoreBoard.getWinnersList()[0].getUsername());
             FileScoreBoard.addWinner(newWinner);
             saveNewScoreBoard(FileScoreBoard);
             Log.d("LOOK!","saveFile");
             }
         fillScoreBoard(FileScoreBoard);
     }
+    public void testWinners(){
+        String path = getFilesDir() + FILE_NAME;
+        File file = new File(path);
+        ScoreBoard board  = new ScoreBoard(new Winner("caz",0,422,new int[]{ R.drawable.starwars1, R.drawable.starwars2,R.drawable.starwars3,R.drawable.starwars4,R.drawable.starwars5,R.drawable.starwars6,R.drawable.starwars7,
+                R.drawable.starwars8,R.drawable.starwars9,R.drawable.starwars10,R.drawable.starwars11,R.drawable.starwars12,R.drawable.starwars13,R.drawable.starwars14,R.drawable.starwars15})
+        );
+        for ( int i = 0; i <8;i++){
+            Winner winner = new Winner("cody",i,i,new int[]{ R.drawable.starwars1, R.drawable.starwars2,R.drawable.starwars3,R.drawable.starwars4,R.drawable.starwars5,R.drawable.starwars6,R.drawable.starwars7,
+                    R.drawable.starwars8,R.drawable.starwars9,R.drawable.starwars10,R.drawable.starwars11,R.drawable.starwars12,R.drawable.starwars13,R.drawable.starwars14,R.drawable.starwars15});
+            board.addWinner(winner);
+        }
+        for (int i = 0; i < board.getWinnersList().length;i++) {
+            Log.d("LOOOOOOOOK",board.getWinnersList()[i].getScore().toString());
+        }
+
+
+        fillScoreBoard(board);
+    }
     public ScoreBoard CreateFile(File file) {
-        ScoreBoard scoreBoard = ScoreBoard.getInstance(newWinner);
+        ScoreBoard scoreBoard = new ScoreBoard(new Winner("caz",0,422,new int[]{ R.drawable.starwars1, R.drawable.starwars2,R.drawable.starwars3,R.drawable.starwars4,R.drawable.starwars5,R.drawable.starwars6,R.drawable.starwars7,
+                R.drawable.starwars8,R.drawable.starwars9,R.drawable.starwars10,R.drawable.starwars11,R.drawable.starwars12,R.drawable.starwars13,R.drawable.starwars14,R.drawable.starwars15})
+        );
+
         Log.d("creatingNewScoreBoard","True");
         try {
             FileOutputStream fos = new FileOutputStream(file);
@@ -122,11 +133,13 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         ScoreBoard scoreBoard = null;
         try {
             scoreBoard = (ScoreBoard) is.readObject();
+            scoreBoard.getWinnersList();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         is.close();
         fis.close();
+
         return scoreBoard;
     }
     public void saveNewScoreBoard(ScoreBoard scoreBoard) throws IOException {
@@ -143,6 +156,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         LinearLayout parent = findViewById(R.id.linearLayoutScoreBoard);
         parent.removeAllViews();
         for (Winner winner : board.getWinnersList()) {
+            Log.d("LOOK",winner.getScore().toString());
             addLineScoreBoard(winner,index);
             index++;
         }
