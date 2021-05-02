@@ -5,10 +5,11 @@ import com.cazel.myapplication.R;
 import java.io.Serializable;
 
 public class Winner implements Serializable {
+    private static final long serialVersionUID = -1786162005835235855L;
     private String username;
     private Integer avatarId;
     private Integer score;
-    private transient  int[] listImageAvatar;
+    private int[] listImageAvatar;
 
     public Winner(String username,Integer avatarId,Integer score,int[] listImageAvatar){
         this.username = username;
@@ -24,8 +25,9 @@ public class Winner implements Serializable {
     public Integer getScore() {
         return score;
     }
+
     public int getWinnerAvatar(){
-        return listImageAvatar[avatarId];
+        return this.listImageAvatar[avatarId];
     }
 
 }

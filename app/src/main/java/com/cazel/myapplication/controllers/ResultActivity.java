@@ -55,7 +55,11 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         Button buttonHome = findViewById(R.id.result_page_home_button);
         buttonHome.setTag("Home");
         buttonHome.setOnClickListener(this);
-        testWinners();
+        try {
+            updateScoreBoard();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -84,26 +88,8 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
             }
         fillScoreBoard(FileScoreBoard);
     }
-    public void testWinners(){
-        String path = getFilesDir() + FILE_NAME;
-        File file = new File(path);
-        ScoreBoard board  = new ScoreBoard(new Winner("caz",0,422,new int[]{ R.drawable.starwars1, R.drawable.starwars2,R.drawable.starwars3,R.drawable.starwars4,R.drawable.starwars5,R.drawable.starwars6,R.drawable.starwars7,
-                R.drawable.starwars8,R.drawable.starwars9,R.drawable.starwars10,R.drawable.starwars11,R.drawable.starwars12,R.drawable.starwars13,R.drawable.starwars14,R.drawable.starwars15})
-        );
-        for ( int i = 0; i <8;i++){
-            Winner winner = new Winner("cody",i,i,new int[]{ R.drawable.starwars1, R.drawable.starwars2,R.drawable.starwars3,R.drawable.starwars4,R.drawable.starwars5,R.drawable.starwars6,R.drawable.starwars7,
-                    R.drawable.starwars8,R.drawable.starwars9,R.drawable.starwars10,R.drawable.starwars11,R.drawable.starwars12,R.drawable.starwars13,R.drawable.starwars14,R.drawable.starwars15});
-            board.addWinner(winner);
-        }
-        for (int i = 0; i < board.getWinnersList().length;i++) {
-        }
-
-        fillScoreBoard(board);
-    }
     public ScoreBoard CreateFile(File file) {
-        ScoreBoard scoreBoard = new ScoreBoard(new Winner("caz",0,422,new int[]{ R.drawable.starwars1, R.drawable.starwars2,R.drawable.starwars3,R.drawable.starwars4,R.drawable.starwars5,R.drawable.starwars6,R.drawable.starwars7,
-                R.drawable.starwars8,R.drawable.starwars9,R.drawable.starwars10,R.drawable.starwars11,R.drawable.starwars12,R.drawable.starwars13,R.drawable.starwars14,R.drawable.starwars15})
-        );
+        ScoreBoard scoreBoard = new ScoreBoard(this.newWinner);
 
         try {
             FileOutputStream fos = new FileOutputStream(file);
@@ -145,10 +131,10 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
 
     public void fillScoreBoard(ScoreBoard board){
         Integer index = 1;
-        LinearLayout parent = findViewById(R.id.linearLayoutScoreBoard);
-        parent.removeAllViews();
+
         for (Winner winner : board.getWinnersList()) {
             addLineScoreBoard(winner,index);
+            Log.d("LOOK","test after addLine");
             index++;
         }
     }
