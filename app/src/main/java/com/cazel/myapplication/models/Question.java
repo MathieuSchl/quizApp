@@ -71,7 +71,7 @@ public class Question {
 
     private boolean testIfStarWarsQuestion(String question){
         String questionLowerCase = question.toLowerCase();
-        String[] starWarsWords = new String[]{"starwars","star wars","droid","jedi","anakin","r2d2","r2-d2","c3po","vador","palpatine"};
+        String[] starWarsWords = new String[]{"starwars","star wars","droid","jedi","anakin","r2d2","r2-d2","c3po","vador","palpatine","chewbacca","han solo","calrissian","skywalker","organa","Amidala"};
         for (int i = 0; i < starWarsWords.length; i++) {
             if(questionLowerCase.split(starWarsWords[i]).length!=1){
                 return true;
