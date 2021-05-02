@@ -15,11 +15,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cazel.myapplication.R;
 import com.cazel.myapplication.models.Player;
 import com.cazel.myapplication.models.ScoreBoard;
+import com.cazel.myapplication.models.Winner;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String  BUTTON_OPTION= "option";
     private static final Integer  GAME_ACTIVITY_REQUEST_CODE= 1;
     private static final Integer  OPTION_ACTIVITY_REQUEST_CODE= 2;
+    private static final String FILE_NAME = "/scoreBoard.ser";
 
 
     @Override
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button buttonOption = findViewById(R.id.options);
         buttonOption.setTag(BUTTON_OPTION);
         buttonOption.setOnClickListener(this);
+        showBestPlayer();
         }
 
     @Override
@@ -118,6 +122,63 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         player.setNewPlayerAvatar(x);
         ImageView avatar=findViewById(R.id.avatarImage);
         avatar.setImageResource(player.getPlayerAvatar());
+    }
+    public void showBestPlayer(){
+        String path = getFilesDir() + FILE_NAME;
+        File file = new File(path);
+        ScoreBoard board = null;
+        if(file.exists()) {
+            try {
+                 board = GetFileScoreBoard();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Winner winner = board.getWinnersList()[0];
+            fillLineBestPlayer(winner);
+        }
+    }
+    public void fillLineBestPlayer(Winner winner){
+
+        LinearLayout parent = findViewById(R.id.currentBestPlayerZone);
+
+        TextView username = new TextView(this);
+        username.setText(winner.getUsername());
+        username.setPadding(30, 0, 30, 0);
+
+        TextView score = new TextView(this);
+        score.setText(winner.getScore().toString());
+        TextView title = new TextView(this);
+        title.setText("Current Best Player :");
+        title.setPadding(10,10,10,10);
+
+        ImageView avatarView = new ImageView(this);
+        avatarView.setImageResource(winner.getWinnerAvatar());
+        avatarView.setMaxHeight(100);
+        avatarView.setMaxWidth(100);
+        avatarView.setScaleType(ImageView.ScaleType.FIT_START);
+        avatarView.setAdjustViewBounds(true);
+        avatarView.setPadding(20,0,0,0);
+
+        parent.addView(title);
+        parent.addView(avatarView);
+        parent.addView(username);
+        parent.addView(score);
+    }
+    public ScoreBoard GetFileScoreBoard() throws IOException {
+        String path = getFilesDir() + FILE_NAME;
+        FileInputStream fis = new FileInputStream(new File(path));
+        ObjectInputStream is = new ObjectInputStream(fis);
+        ScoreBoard scoreBoard = null;
+        try {
+            scoreBoard = (ScoreBoard) is.readObject();
+            scoreBoard.getWinnersList();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        is.close();
+        fis.close();
+
+        return scoreBoard;
     }
 
 }

@@ -141,13 +141,20 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
     public void addLineScoreBoard(Winner winner,Integer index){
         LinearLayout parent = findViewById(R.id.linearLayoutScoreBoard);
         LinearLayout layout1 = new LinearLayout(this);
-        layout1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layout1.setLayoutParams(lp);
         layout1.setOrientation(LinearLayout.HORIZONTAL);
         parent.addView(layout1);
+
         TextView position = new TextView(this);
         position.setText(index.toString());
+
         TextView username = new TextView(this);
         username.setText(winner.getUsername());
+        username.setPadding(30, 0, 30, 0);
+
+        TextView score = new TextView(this);
+        score.setText(winner.getScore().toString());
 
         ImageView avatarView = new ImageView(this);
         avatarView.setImageResource(winner.getWinnerAvatar());
@@ -155,9 +162,11 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         avatarView.setMaxWidth(100);
         avatarView.setScaleType(ImageView.ScaleType.FIT_START);
         avatarView.setAdjustViewBounds(true);
+        avatarView.setPadding(20,0,0,0);
 
         layout1.addView(position);
         layout1.addView(avatarView);
         layout1.addView(username);
+        layout1.addView(score);
     }
 }

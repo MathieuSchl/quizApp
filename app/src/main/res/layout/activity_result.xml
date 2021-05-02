@@ -10,7 +10,7 @@
         android:id="@+id/resultAvatarZone"
         android:layout_width="163dp"
         android:layout_height="177dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,12 +31,12 @@
         android:layout_height="25dp"
         android:layout_marginBottom="16dp"
         android:text="@string/scoreTitle"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayoutScoreBoard"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.951"
+        app:layout_constraintVertical_bias="0.405"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -45,12 +45,12 @@
         android:layout_height="25dp"
         android:layout_marginBottom="32dp"
         android:text="@string/noteResultValue"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayoutScoreBoard"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.416"
         tools:ignore="MissingConstraints" />
 
     <LinearLayout
@@ -60,10 +60,9 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.685"></LinearLayout>
+        app:layout_constraintVertical_bias="0.729"></LinearLayout>
 
     <Button
         android:id="@+id/result_page_home_button"
@@ -76,5 +75,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutScoreBoard"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/ScoreBoardTitle"
+        android:layout_width="156dp"
+        android:layout_height="22dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/ScoreBoardTitle"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutScoreBoard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
