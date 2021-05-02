@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cazel.myapplication.R;
 import com.cazel.myapplication.models.GameData;
@@ -83,14 +84,17 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         }
         else{
             FileScoreBoard = GetFileScoreBoard();
-            FileScoreBoard.addWinner(newWinner);
+            boolean PlayerFirst = FileScoreBoard.addWinner(newWinner);
+            if(PlayerFirst){
+                Toast.makeText(getApplicationContext(),"Good job !! "+newWinner.getUsername()+" Won the first place with "+newWinner.getScore()+" Pts",Toast.LENGTH_SHORT).show();
+            }
             saveNewScoreBoard(FileScoreBoard);
             }
         fillScoreBoard(FileScoreBoard);
     }
     public ScoreBoard CreateFile(File file) {
         ScoreBoard scoreBoard = new ScoreBoard(this.newWinner);
-
+        Toast.makeText(getApplicationContext(),"Good job !! "+newWinner.getUsername()+" Won the first place with "+newWinner.getScore()+" Pts",Toast.LENGTH_SHORT).show();
         try {
             FileOutputStream fos = new FileOutputStream(file);
             ObjectOutputStream os = new ObjectOutputStream(fos);
