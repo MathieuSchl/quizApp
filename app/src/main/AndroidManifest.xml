@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         android:requestLegacyExternalStorage="true">
-        <activity android:name=".controllers.ResultActivity" />
+        <activity
+            android:name=".controllers.ResultActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".controllers.GameActivity"
             android:screenOrientation="portrait" />

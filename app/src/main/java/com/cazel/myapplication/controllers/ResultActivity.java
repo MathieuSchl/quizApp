@@ -33,7 +33,7 @@ import java.io.ObjectOutputStream;
 public class ResultActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String FILE_NAME = "/scoreBoard.ser";
 
-    private static Winner newWinner;
+    private Winner newWinner;
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,29 +42,19 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         GameData data = GameData.getInstance();
         Player player = Player.getInstance();
         player.setScore(data.getScore());
-        try {
-            newWinner = new Winner((Player)player.clone());
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
         TextView nickName = findViewById(R.id.nickNameResult);
-        nickName.setText(newWinner.getUsername());
+        nickName.setText(player.getUsername());
 
         TextView noteResult = findViewById(R.id.noteResult);
         noteResult.setText(data.getScore()+"/"+data.getNbQuestions());
 
         ImageView avatar = findViewById(R.id.resultAvatarZone);
-        avatar.setImageResource(newWinner.getWinnerAvatar());
+        avatar.setImageResource(player.getPlayerAvatar());
 
         Button buttonHome = findViewById(R.id.result_page_home_button);
         buttonHome.setTag("Home");
         buttonHome.setOnClickListener(this);
-        //testScoreBoard();
-        try {
-            updateScoreBoard();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        testScoreBoard();
     }
 
     @Override
@@ -80,13 +70,16 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
     public void testScoreBoard(){
-        ScoreBoard actualBoard = null;
-        if(ScoreBoard.getInstance() == null){
-             actualBoard = ScoreBoard.getInstance(newWinner);
-        }else{
-             actualBoard = ScoreBoard.getInstance();
-        }
+        ScoreBoard updatedBoard = null;
 
+        if(ScoreBoard.getInstance() == null){
+             updatedBoard = ScoreBoard.getInstance(newWinner);
+        }else{
+            ScoreBoard actualBoard = ScoreBoard.getInstance();
+            actualBoard.addWinner(newWinner);
+            updatedBoard = actualBoard;
+        }
+        fillScoreBoard(updatedBoard);
     }
     public void updateScoreBoard() throws IOException {
         String path = getFilesDir() + FILE_NAME;
@@ -146,7 +139,9 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public void fillScoreBoard(ScoreBoard board){
-        Integer index = 0;
+        Integer index = 1;
+        LinearLayout parent = findViewById(R.id.linearLayoutScoreBoard);
+        parent.removeAllViews();
         for (Winner winner : board.getWinnersList()) {
             addLineScoreBoard(winner,index);
             index++;
