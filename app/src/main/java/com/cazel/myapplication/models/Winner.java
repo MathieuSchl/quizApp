@@ -12,7 +12,7 @@ public class Winner implements Serializable {
     private int[] listImageAvatar;
 
     public Winner(String username,Integer avatarId,Integer score,int[] listImageAvatar){
-        this.username = username;
+        this.username = (username!=null && !username.equals("")) ? username : "new player";
         this.avatarId = avatarId;
         this.score = score;
         this.listImageAvatar = listImageAvatar;
