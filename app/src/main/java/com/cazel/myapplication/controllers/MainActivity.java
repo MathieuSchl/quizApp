@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final Integer  GAME_ACTIVITY_REQUEST_CODE= 1;
     private static final Integer  OPTION_ACTIVITY_REQUEST_CODE= 2;
     private static final String FILE_NAME = "/scoreBoard.ser";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +119,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void changeAvatar(){
+        final MediaPlayer gonkSong = MediaPlayer.create(this, R.raw.gonk);
+        gonkSong.start();
         Random rand = new Random();
         Player player=Player.getInstance();
         int x=rand.nextInt(player.getListImageAvatar().length);
